@@ -39,7 +39,7 @@
 (setq mouse-avoidance-mode 'banish)
 (if mac?
     (set-frame-font "DejaVu Sans Mono-14")
-  (set-frame-font "DejaVu Sans Mono-10"))
+  (set-frame-font "DejaVu Sans Mono-11"))
 
 ;; X11 Copy & Paste to/from Emacs
 (setq x-select-enable-clipboard t)
