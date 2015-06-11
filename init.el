@@ -104,15 +104,6 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize) ;; You might already have this line
 
-;; https://github.com/clojure-emacs/cider/wiki/Installation
-(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
-(unless (package-installed-p 'cider)
-  (package-install 'cider))
-
-;;
-(add-to-list 'package-pinned-packages '(paredit . "melpa-stable") t)
-(unless (package-installed-p 'paredit)
-  (package-install 'paredit))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Color themes
@@ -529,9 +520,10 @@
 (unless (package-installed-p 'company)
   (package-install 'company))
 (require 'company)
+(global-company-mode t)
+
 (require 'company-emacs-eclim)
 (company-emacs-eclim-setup)
-(global-company-mode t)
 
 ;; Keymap
 ;; C-c C-e m r => eclim-maven-run (Goal: install)
@@ -601,11 +593,29 @@
 (global-set-key (kbd "C-0") '(lambda()(interactive)
                                (modify-frame-parameters nil `((alpha . 100)))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Clojure
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; https://github.com/clojure-emacs/cider/wiki/Installation
+(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+(unless (package-installed-p 'cider)
+  (package-install 'cider))
+
+(add-hook 'cider-mode-hook #'eldoc-mode)
+(setq nrepl-buffer-name-show-port t)
+
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
+(add-hook 'cider-repl-mode-hook #'paredit-mode)
+
+;; Paredit mode
+(add-to-list 'package-pinned-packages '(paredit . "melpa-stable") t)
+(unless (package-installed-p 'paredit)
+  (package-install 'paredit))
+
 (defun turn-on-paredit () (paredit-mode 1))
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
-;; Paredit mode
+
 (eval-after-load 'paredit
   '(progn (define-key paredit-mode-map (kbd "(")       'paredit-open-parenthesis)
           (define-key paredit-mode-map (kbd ")")       'paredit-close-parenthesis)
