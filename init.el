@@ -119,9 +119,16 @@
   (package-install 'color-theme-sanityinc-tomorrow))
 (require 'color-theme-sanityinc-tomorrow)
 
+(unless (package-installed-p 'zenburn-theme)
+  (package-install 'zenburn-theme))
+
+(unless (package-installed-p 'alect-themes)
+  (package-install 'alect-themes))
+
 (unless (package-installed-p 'monokai-theme)
   (package-install 'monokai-theme))
-(load-theme 'monokai t)
+
+(load-theme 'alect-black t)
 
 ;; ;; ;; -----------------
 ;; ;; ;; Insert time stamp
@@ -651,3 +658,24 @@
 
 (require 'pig-mode)
 
+;; https://github.com/sabof/project-explorer
+(unless (package-installed-p 'project-explorer)
+  (package-install 'project-explorer))
+
+(require 'project-explorer)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("7356632cebc6a11a87bc5fcffaa49bae528026a78637acd03cae57c091afd9b9" "04dd0236a367865e591927a3810f178e8d33c372ad5bfef48b5ce90d4b476481" "a0feb1322de9e26a4d209d1cfa236deaf64662bb604fa513cca6a057ddf0ef64" "3dafeadb813a33031848dfebfa0928e37e7a3c18efefa10f3e9f48d1993598d3" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+ '(magit-diff-use-overlays nil)
+ '(magit-use-overlays nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
