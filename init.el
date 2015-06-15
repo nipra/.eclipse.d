@@ -128,7 +128,9 @@
 (unless (package-installed-p 'monokai-theme)
   (package-install 'monokai-theme))
 
-(load-theme 'alect-black t)
+;; (load-theme 'alect-black t)
+
+(load-theme 'monokai t)
 
 ;; ;; ;; -----------------
 ;; ;; ;; Insert time stamp
