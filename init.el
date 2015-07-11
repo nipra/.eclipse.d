@@ -617,6 +617,8 @@
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
 (add-hook 'cider-repl-mode-hook #'paredit-mode)
 
+(define-key cider-mode-map (kbd "TAB") 'complete-symbol)
+
 ;; Paredit mode
 (add-to-list 'package-pinned-packages '(paredit . "melpa-stable") t)
 (unless (package-installed-p 'paredit)
@@ -681,3 +683,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; Java
+(add-hook 'java-mode-hook (lambda ()
+                            (setq c-basic-offset 2)))
