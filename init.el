@@ -39,7 +39,7 @@
 (setq mouse-avoidance-mode 'banish)
 (if mac?
     (set-frame-font "DejaVu Sans Mono-14")
-  (set-frame-font "DejaVu Sans Mono-11"))
+    (set-frame-font "DejaVu Sans Mono-11"))
 
 ;; X11 Copy & Paste to/from Emacs
 (setq x-select-enable-clipboard t)
@@ -176,7 +176,7 @@
   (interactive) 
   (set-frame-parameter nil 'fullscreen (if (frame-parameter nil 'fullscreen) 
                                            nil 
-                                         'fullboth)))
+                                           'fullboth)))
 (global-set-key [(meta return)] 'toggle-fullscreen) 
 
 (when (executable-find "wmctrl")        ; apt-get install wmctrl
@@ -204,30 +204,30 @@
 
 (defun point-of-beginning-of-bottom-line ()
   (save-excursion
-    (move-to-window-line -1)
-    (point)))
+   (move-to-window-line -1)
+   (point)))
 
 (defun point-of-beginning-of-line ()
   (save-excursion
-    (beginning-of-line)
-    (point)))
+   (beginning-of-line)
+   (point)))
 
 (defun next-one-line () (interactive)
-       (if (= (point-of-beginning-of-bottom-line) (point-of-beginning-of-line))
-           (progn (scroll-up 1)
-                  (next-line 1))
-         (next-line 1)))
+  (if (= (point-of-beginning-of-bottom-line) (point-of-beginning-of-line))
+      (progn (scroll-up 1)
+             (next-line 1))
+      (next-line 1)))
 
 (defun point-of-beginning-of-top-line ()
   (save-excursion
-    (move-to-window-line 0)
-    (point)))
+   (move-to-window-line 0)
+   (point)))
 
 (defun previous-one-line () (interactive)
-       (if (= (point-of-beginning-of-top-line) (point-of-beginning-of-line))
-           (progn (scroll-down 1)
-                  (previous-line 1))
-         (previous-line 1)))
+  (if (= (point-of-beginning-of-top-line) (point-of-beginning-of-line))
+      (progn (scroll-down 1)
+             (previous-line 1))
+      (previous-line 1)))
 
 (global-set-key (kbd "C-n") 'next-one-line)
 (global-set-key (kbd "C-p") 'previous-one-line)
@@ -246,7 +246,7 @@
   (interactive "p")
   (if (or arg (not buffer-file-name))
       (find-file (concat "/sudo:root@localhost:" (ido-read-file-name "File: ")))
-    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+      (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
 
 ;; starter-kit-bindings.el
@@ -269,14 +269,14 @@
 
 ;; Cosmetics
 (eval-after-load 'diff-mode
-  '(progn
-     (set-face-foreground 'diff-added "green4")
-     (set-face-foreground 'diff-removed "red3")))
+                 '(progn
+                   (set-face-foreground 'diff-added "green4")
+                   (set-face-foreground 'diff-removed "red3")))
 
 (eval-after-load 'magit
-  '(progn
-     (set-face-foreground 'magit-diff-add "green3")
-     (set-face-foreground 'magit-diff-del "red3")))
+                 '(progn
+                   (set-face-foreground 'magit-diff-add "green3")
+                   (set-face-foreground 'magit-diff-del "red3")))
 
 ;;; someday might want to rotate windows if more than 2 of them
 ;;; http://steve.yegge.googlepages.com/my-dot-emacs-file
@@ -360,13 +360,13 @@
                    (switch-to-buffer this-buffer)
                    (select-window this-window)
                    (message "Swapped buffers."))
-          (message "Old buffer/window killed.  Aborting."))
+            (message "Old buffer/window killed.  Aborting."))
         (setq swapping-buffer nil)
         (setq swapping-window nil))
-    (progn
-      (setq swapping-buffer (current-buffer))
-      (setq swapping-window (selected-window))
-      (message "Buffer and window marked for swapping."))))
+      (progn
+        (setq swapping-buffer (current-buffer))
+        (setq swapping-window (selected-window))
+        (message "Buffer and window marked for swapping."))))
 
 (global-set-key (kbd "C-c p") 'swap-buffers-in-windows)
 
@@ -443,11 +443,11 @@
   "change cursor color according to some minor modes."
   ;; set-cursor-color is somewhat costly, so we only call it when needed:
   (let ((color
-         (if buffer-read-only
-             "green"
-           (if overwrite-mode
-               "blue"
-             "red"))))
+          (if buffer-read-only
+              "green"
+              (if overwrite-mode
+                  "blue"
+                  "red"))))
     (unless (and
              (string= color hcz-set-cursor-color-color)
              (string= (buffer-name) hcz-set-cursor-color-buffer))
@@ -509,8 +509,8 @@
 (global-eclim-mode)
 
 (if mac?
-   (setq eclim-executable "/Applications/eclipse/eclim")
-  (setq eclim-executable (concat nipra-home "/.eclipse/org.eclipse.platform_4.4.1_1873933799_linux_gtk_x86_64/eclim")))
+    (setq eclim-executable "/Applications/eclipse/eclim")
+    (setq eclim-executable (concat nipra-home "/.eclipse/org.eclipse.platform_4.4.1_1873933799_linux_gtk_x86_64/eclim")))
 
 (setq eclimd-executable nil)
 (setq eclim-auto-save nil)              ; Turn off auto save
@@ -551,7 +551,7 @@
   (package-install 'sql-indent))
 ;; (require 'sql-indent)
 (eval-after-load "sql"
-  (load-library "sql-indent"))
+                 (load-library "sql-indent"))
 
 ;;; http://www.emacswiki.org/emacs/SmoothScrolling
 ;;; scroll one line at a time (less "jumpy" than defaults)
@@ -574,7 +574,7 @@
        (cadr (frame-parameter nil 'alpha))
        100)
       (set-frame-parameter nil 'alpha '(100 100))
-    (set-frame-parameter nil 'alpha '(85 50))))
+      (set-frame-parameter nil 'alpha '(85 50))))
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
 ;; A general transparency function:
@@ -600,7 +600,7 @@
 (global-set-key (kbd "C-8") '(lambda()(interactive)(djcb-opacity-modify)))
 (global-set-key (kbd "C-9") '(lambda()(interactive)(djcb-opacity-modify t)))
 (global-set-key (kbd "C-0") '(lambda()(interactive)
-                               (modify-frame-parameters nil `((alpha . 100)))))
+                              (modify-frame-parameters nil `((alpha . 100)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Clojure
@@ -627,34 +627,35 @@
 (defun turn-on-paredit () (paredit-mode 1))
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
 
-(eval-after-load 'paredit
-  '(progn (define-key paredit-mode-map (kbd "(")       'paredit-open-parenthesis)
-          (define-key paredit-mode-map (kbd ")")       'paredit-close-parenthesis)
-          (define-key paredit-mode-map (kbd "{")       'paredit-open-curly)
-          (define-key paredit-mode-map (kbd "}")       'paredit-close-curly)
-          (define-key paredit-mode-map (kbd "[")       'paredit-open-square)
-          (define-key paredit-mode-map (kbd "]")       'paredit-close-square)
-          (define-key paredit-mode-map (kbd "M-(")     (lambda () (interactive) (insert "(")))
-          (define-key paredit-mode-map (kbd "M-)")     (lambda () (interactive) (insert ")")))
-          (define-key paredit-mode-map (kbd "M-j")     'paredit-newline)
-          (define-key paredit-mode-map (kbd "RET")     nil)
-          (define-key paredit-mode-map (kbd "C-t")     'transpose-sexps)
-          (define-key paredit-mode-map (kbd "C-M-t")   'transpose-chars)
-          (define-key paredit-mode-map (kbd "C-b")     'backward-sexp)
-          (define-key paredit-mode-map (kbd "C-M-b")   'backward-char)
-          (define-key paredit-mode-map (kbd "C-f")     'forward-sexp)
-          (define-key paredit-mode-map (kbd "C-M-f")   'forward-char)
-          (define-key paredit-mode-map (kbd "C-c b")   'backward-kill-sexp)
-          (define-key paredit-mode-map (kbd "C-c C-j") 'paredit-join-sexps)
-          ;; (define-key paredit-mode-map (kbd "C-i") 'slime-indent-and-complete-symbol)
-          (define-key paredit-mode-map (kbd "C-c C-1") 'paredit-backward-barf-sexp)
-          (define-key paredit-mode-map (kbd "C-c C-2") 'paredit-forward-barf-sexp)
-          (define-key paredit-mode-map (kbd "C-c C-3") 'paredit-backward-slurp-sexp)
-          (define-key paredit-mode-map (kbd "C-c C-4") 'paredit-forward-slurp-sexp)
-          (define-key paredit-mode-map (kbd "C-c x") 'paredit-backward-slurp-sexp)
-          (define-key paredit-mode-map (kbd "C-c z") 'paredit-forward-slurp-sexp)
-          (define-key paredit-mode-map (kbd "C-c c") 'paredit-splice-sexp-killing-backward)
-          (define-key paredit-mode-map (kbd "C-c v") 'paredit-splice-sexp-killing-forward)))
+(eval-after-load
+ 'paredit
+ '(progn (define-key paredit-mode-map (kbd "(")       'paredit-open-parenthesis)
+   (define-key paredit-mode-map (kbd ")")       'paredit-close-parenthesis)
+   (define-key paredit-mode-map (kbd "{")       'paredit-open-curly)
+   (define-key paredit-mode-map (kbd "}")       'paredit-close-curly)
+   (define-key paredit-mode-map (kbd "[")       'paredit-open-square)
+   (define-key paredit-mode-map (kbd "]")       'paredit-close-square)
+   (define-key paredit-mode-map (kbd "M-(")     (lambda () (interactive) (insert "(")))
+   (define-key paredit-mode-map (kbd "M-)")     (lambda () (interactive) (insert ")")))
+   (define-key paredit-mode-map (kbd "M-j")     'paredit-newline)
+   (define-key paredit-mode-map (kbd "RET")     nil)
+   (define-key paredit-mode-map (kbd "C-t")     'transpose-sexps)
+   (define-key paredit-mode-map (kbd "C-M-t")   'transpose-chars)
+   (define-key paredit-mode-map (kbd "C-b")     'backward-sexp)
+   (define-key paredit-mode-map (kbd "C-M-b")   'backward-char)
+   (define-key paredit-mode-map (kbd "C-f")     'forward-sexp)
+   (define-key paredit-mode-map (kbd "C-M-f")   'forward-char)
+   (define-key paredit-mode-map (kbd "C-c b")   'backward-kill-sexp)
+   (define-key paredit-mode-map (kbd "C-c C-j") 'paredit-join-sexps)
+   ;; (define-key paredit-mode-map (kbd "C-i") 'slime-indent-and-complete-symbol)
+   (define-key paredit-mode-map (kbd "C-c C-1") 'paredit-backward-barf-sexp)
+   (define-key paredit-mode-map (kbd "C-c C-2") 'paredit-forward-barf-sexp)
+   (define-key paredit-mode-map (kbd "C-c C-3") 'paredit-backward-slurp-sexp)
+   (define-key paredit-mode-map (kbd "C-c C-4") 'paredit-forward-slurp-sexp)
+   (define-key paredit-mode-map (kbd "C-c x") 'paredit-backward-slurp-sexp)
+   (define-key paredit-mode-map (kbd "C-c z") 'paredit-forward-slurp-sexp)
+   (define-key paredit-mode-map (kbd "C-c c") 'paredit-splice-sexp-killing-backward)
+   (define-key paredit-mode-map (kbd "C-c v") 'paredit-splice-sexp-killing-forward)))
 
 ;; Pig
 (unless (package-installed-p 'pig-mode)
@@ -687,3 +688,202 @@
 ;; Java
 (add-hook 'java-mode-hook (lambda ()
                             (setq c-basic-offset 2)))
+
+(unless (package-installed-p 'slime)
+  (package-install 'slime))
+
+;; -----
+;; SLIME
+;; -----
+
+;; slime-autodoc-mode is an additional minor-mode for automatically
+;; showing documentation (argument lists) for code near the point.
+(require 'slime-autoloads)
+(add-hook 'slime-mode-hook (lambda () (slime-autodoc-mode t)))
+
+;; To use, add this to your ~/.emacs:
+
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+;; Replace "sbcl" with the path to your implementation
+;; (setq inferior-lisp-program "sbcl")
+
+(setq inferior-lisp-program
+      "/usr/local/bin/sbcl"
+      slime-startup-animation t
+      lisp-indent-function 'common-lisp-indent-function)
+
+;; (require 'slime)
+(slime-setup '(slime-repl
+               slime-fancy
+               slime-asdf
+               slime-fuzzy
+               ;; slime-indentation
+               ))
+;; (slime-setup)
+
+(defmacro defslime-start (name lisp)
+  `(defun ,name ()
+     (interactive)
+     (let ((inferior-lisp-program ,lisp))
+       (slime))))
+
+(defslime-start sbcl "/usr/local/bin/sbcl")
+
+(add-hook 'slime-mode-hook (lambda () (paredit-mode +1)))
+(add-hook 'lisp-mode-hook (lambda () (paredit-mode +1)))
+(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
+(add-hook 'slime-connected-hook (lambda () (paredit-mode +1)))
+(setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
+(setq slime-net-coding-system 'utf-8-unix)
+;; (setq slime-complete-symbol 'slime-fuzzy-complete-symbol)
+;; (setq slime-simple-complete-symbol 'slime-fuzzy-complete-symbol)
+
+;;; Customizations for Slime Lisp
+
+;; Either use `slime-indentation' or below snippet
+;; (setq lisp-simple-loop-indentation 1
+;;       lisp-loop-keyword-indentation 6
+;;       lisp-loop-forms-indentation 6)
+
+;; http://bc.tech.coop/blog/070424.html
+(defun slime-send-dwim (arg)
+  "Send the appropriate forms to CL to be evaluated."
+  (interactive "P")
+  (save-excursion
+   (cond 
+     ;;Region selected - evaluate region
+     ((not (equal mark-active nil))
+      (copy-region-as-kill (mark) (point)))
+     ;; At/before sexp - evaluate next sexp
+     ((or (looking-at "\s(")
+          (save-excursion
+           (ignore-errors (forward-char 1))
+           (looking-at "\s(")))
+      (forward-list 1)
+      (let ((end (point))
+            (beg (save-excursion
+                  (backward-list 1)
+                  (point))))
+        (copy-region-as-kill beg end)))
+     ;; At/after sexp - evaluate last sexp
+     ((or (looking-at "\s)")
+          (save-excursion
+           (backward-char 1)
+           (looking-at "\s)")))
+      (if (looking-at "\s)")
+          (forward-char 1))
+      (let ((end (point))
+            (beg (save-excursion
+                  (backward-list 1)
+                  (point))))
+        (copy-region-as-kill beg end)))
+     ;; Default - evaluate enclosing top-level sexp
+     (t (progn
+          (while (ignore-errors (progn
+                                  (backward-up-list)
+                                  t)))
+          (forward-list 1)
+          (let ((end (point))
+                (beg (save-excursion
+                      (backward-list 1)
+                      (point))))
+            (copy-region-as-kill beg end)))))
+   (set-buffer (slime-output-buffer))
+   (unless (eq (current-buffer) (window-buffer))
+     (pop-to-buffer (current-buffer) t))
+   (goto-char (point-max))
+   (yank)
+   (if arg (progn
+             (slime-repl-return)
+             (other-window 1)))))
+
+;; http://bc.tech.coop/blog/070425.html
+(defun slime-new-repl (&optional new-port)
+  "Create additional REPL for the current Lisp connection."
+  (interactive)
+  (if (slime-current-connection)
+      (let ((port (or new-port (slime-connection-port (slime-connection)))))
+        (slime-eval `(swank::create-server :port ,port))
+        (slime-connect slime-lisp-host port))
+      (error "Not connected")))
+
+(defun my-slime-send-dwim ()
+  (interactive)
+  (slime-send-dwim 0)
+  (slime-reindent-defun)
+  (slime-repl-return)
+  (other-window 1))
+
+(eval-after-load
+ 'slime
+ '(progn
+   (define-key slime-mode-map (kbd "C-c M-a") 'slime-arglist)
+   (define-key slime-mode-map (kbd "C-c w") 'paredit-wrap-sexp)
+   (define-key slime-mode-map (kbd "C-t")     'transpose-sexps)
+   (define-key slime-mode-map (kbd "C-M-t")   'transpose-chars)
+   (define-key slime-mode-map (kbd "C-M-b")   'backward-char)
+   (define-key slime-mode-map (kbd "C-M-f")   'forward-char)
+                                        ; (define-key slime-mode-map (kbd "<f7>")    'vertical-split-slime-repl)
+   (define-key slime-mode-map (kbd "C-c h")   'slime-hyperspec-lookup)
+   (define-key slime-mode-map (kbd "C-c C-f") 'slime-complete-form)
+   (define-key slime-mode-map (kbd "C-c C-s") 'paredit-split-sexp)
+   (define-key slime-mode-map (kbd "<f5>")    'slime-selector)
+   (define-key slime-mode-map (kbd "C-c ;")   'slime-insert-balanced-comments) ;
+   (define-key slime-mode-map (kbd "C-c M-;") 'slime-remove-balanced-comments)
+   (define-key slime-mode-map (kbd "<C-tab>") 'slime-fuzzy-complete-symbol)
+   (define-key slime-mode-map (kbd "C-M-m") 'mark-sexp)
+   (define-key slime-mode-map (kbd "C-c :") 'slime-eval-buffer)
+   (define-key slime-mode-map (kbd "C-c r") 'slime-send-dwim)
+   (define-key slime-mode-map (kbd "C-c s") 'my-slime-send-dwim)
+   (define-key slime-mode-map (kbd "C-x C-k 0") 'redshank-indent-slots)))
+
+(eval-after-load
+ 'slime-inspector
+ '(progn (define-key slime-inspector-mode-map (kbd "C-c c") 'slime-inspector-copy-down)))
+
+(eval-after-load
+ 'sldb
+ '(define-key sldb-mode-map (kbd "<f5>")     'slime-selector)) 
+
+(eval-after-load 
+ 'slime-repl
+ '(progn (define-key slime-repl-mode-map (kbd "<f5>")    'slime-selector)
+   (define-key slime-repl-mode-map (kbd "C-c M-a") 'slime-arglist)
+   (define-key slime-repl-mode-map (kbd "C-c w") 'paredit-wrap-sexp)
+   (define-key slime-repl-mode-map (kbd "C-M-b")   'backward-char)
+   (define-key slime-repl-mode-map (kbd "C-M-f")   'forward-char)
+   (define-key slime-repl-mode-map (kbd "C-c C-f") 'slime-complete-form)
+   (define-key slime-repl-mode-map (kbd "C-c C-s") 'paredit-split-sexp)
+   (define-key slime-repl-mode-map (kbd "C-c h")   'slime-hyperspec-lookup)
+   (define-key slime-repl-mode-map (kbd "<C-tab>") 'slime-fuzzy-complete-symbol)
+   (define-key slime-repl-mode-map (kbd "C-M-m") 'mark-sexp)
+   (define-key slime-repl-mode-map (kbd "C-c C-d h") 'cl-lookup)
+   (define-key slime-repl-mode-map (kbd "C-c C-x c") 'slime-list-connections)))
+
+;; Paredit mode
+;; (eval-after-load 
+;;  'paredit
+;;  '(progn (define-key paredit-mode-map (kbd "(")       'paredit-open-parenthesis)
+;;    (define-key paredit-mode-map (kbd ")")       'paredit-close-parenthesis)
+;;    (define-key paredit-mode-map (kbd "M-(")     (lambda () (interactive) (insert "(")))
+;;    (define-key paredit-mode-map (kbd "M-)")     (lambda () (interactive) (insert ")")))
+;;    (define-key paredit-mode-map (kbd "M-j")     'paredit-newline)
+;;    (define-key paredit-mode-map (kbd "RET")     nil)
+;;    (define-key paredit-mode-map (kbd "C-t")     'transpose-sexps)
+;;    (define-key paredit-mode-map (kbd "C-M-t")   'transpose-chars)
+;;    (define-key paredit-mode-map (kbd "C-b")     'backward-sexp)
+;;    (define-key paredit-mode-map (kbd "C-M-b")   'backward-char)
+;;    (define-key paredit-mode-map (kbd "C-f")     'forward-sexp)
+;;    (define-key paredit-mode-map (kbd "C-M-f")   'forward-char)
+;;    (define-key paredit-mode-map (kbd "C-c b")   'backward-kill-sexp)
+;;    (define-key paredit-mode-map (kbd "C-c C-j") 'paredit-join-sexps)
+;;    (define-key paredit-mode-map (kbd "C-i") 'slime-indent-and-complete-symbol)
+;;    (define-key paredit-mode-map (kbd "C-c C-1") 'paredit-backward-barf-sexp)
+;;    (define-key paredit-mode-map (kbd "C-c C-2") 'paredit-forward-barf-sexp)
+;;    (define-key paredit-mode-map (kbd "C-c C-3") 'paredit-backward-slurp-sexp)
+;;    (define-key paredit-mode-map (kbd "C-c C-4") 'paredit-forward-slurp-sexp)
+;;    (define-key paredit-mode-map (kbd "C-c x") 'paredit-backward-slurp-sexp)
+;;    (define-key paredit-mode-map (kbd "C-c z") 'paredit-forward-slurp-sexp)
+;;    (define-key paredit-mode-map (kbd "C-c c") 'paredit-splice-sexp-killing-backward)
+;;    (define-key paredit-mode-map (kbd "C-c v") 'paredit-splice-sexp-killing-forward)))
+
