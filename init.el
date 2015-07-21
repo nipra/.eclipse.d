@@ -617,7 +617,12 @@
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
 (add-hook 'cider-repl-mode-hook #'paredit-mode)
 
-(define-key cider-mode-map (kbd "TAB") 'complete-symbol)
+(eval-after-load
+    'cider-mode
+  '(progn
+     (define-key cider-mode-map (kbd "TAB") 'complete-symbol)))
+
+(setq cider-lein-command (concat nipra-home "/bin/lein"))
 
 ;; Paredit mode
 (add-to-list 'package-pinned-packages '(paredit . "melpa-stable") t)
