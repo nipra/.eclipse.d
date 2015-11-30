@@ -668,6 +668,8 @@
 
 (require 'pig-mode)
 
+(setq pig-indent-level 2)
+
 ;; https://github.com/sabof/project-explorer
 (unless (package-installed-p 'project-explorer)
   (package-install 'project-explorer))
@@ -901,3 +903,11 @@
 (global-set-key (kbd "M-g f") 'avy-goto-line)
 (global-set-key (kbd "M-g w") 'avy-goto-word-1)
 (global-set-key (kbd "M-g e") 'avy-goto-word-0)
+
+;; (unless (package-installed-p 'gradle-mode)
+;;   (package-install 'gradle-mode))
+;; (require 'gradle-mode)
+
+;; (unless (package-installed-p 'groovy-mode)
+;;   (package-install 'groovy-mode))
+;; (require 'groovy-mode)
